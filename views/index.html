@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Create a Nostr account{% endblock %}
+
+{% block content %}
+<div class="form">
+    <form method="post" action="create">
+        <textarea name="fname" id="" placeholder="john doe"></textarea>
+        <button type="submit">Create keys</button>
+    </form>
+    {% if nsec %}
+        <p>{{ greetings }}</p>
+        <p>This is my public key: {{ npub }}</p>
+        <p>This is my private key: {{ parseLineBreak(nsec) }}</p>
+    {% endif %}
+</div>
+{% endblock %}
