@@ -1,59 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        nav {
-            background: rgb(0, 0, 0, 0.4);
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-        }
-       
-        a {
-            color: rgb(255, 255, 255);
-        }
-        
-        nav,
-        footer {
-            text-transform: uppercase;
-            font-size: 0.7rem;
-            letter-spacing: 0.1px;
-            font-weight: 500;
-        }
-
-        html {
-            background: rgb(20, 20, 40);
-            overflow-y: scroll;
-        }
-
-        main {
-            margin-top: 5vw;
-            margin-bottom: 5rem;
-            color: rgb(255, 255, 255);
-        }
-
-        .form {
-            text-align: center;
-            margin: 3rem 0;
-        }
-
-        footer {
-            text-align: center;
-            margin: 3rem 0;
-            color: rgb(255, 255, 255, 0.4);
-        }
-    </style>
-   <title>{% block title %}My Nostr client{% endblock %}</title>
+    <title>{% block title %}My Nostr client{% endblock %}</title>
+    <meta name="description" content="This is a brief description of my nostr client that includes relevant keywords.">
+    {{ css("app.css") }}
+   
 </head>
+
 <body>
     {% include "partials/header.html" %}
-    <main>
-        <div id="content">
-            {% block content %}{% endblock %}
-        </div>
-    </main>
+    {% block content %}{% endblock %}
     {% include "partials/footer.html" %}
 </body>
+
 </html>
 

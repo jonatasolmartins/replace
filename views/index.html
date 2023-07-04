@@ -1,17 +1,30 @@
 {% extends "base.html" %}
 
-{% block title %}Create a Nostr account{% endblock %}
-
 {% block content %}
-<div class="form">
-    <form method="post" action="create">
-        <textarea name="fname" id="" placeholder="john doe"></textarea>
-        <button type="submit">Create keys</button>
-    </form>
-    {% if nsec %}
-        <p>{{ greetings }}</p>
-        <p>This is my public key: {{ npub }}</p>
-        <p>This is my private key: {{ parseLineBreak(nsec) }}</p>
-    {% endif %}
+<div class="container">
+    <div class="login">
+        <form method="post" action="account/create">
+        <h1>Login</h1>
+            <div class="flex">
+                <input dir="auto" type="password" name="lkey" placeholder="nsec, npub, nip-05, hex, mnemonic" class="f-grow">
+                <svg width="30" height="30" class="highlight btn-sm pointer">
+                    <use href="/be850cbae7c9ec6f3704.svg#openeye"></use>
+                </svg>
+                <p>
+                    Only the secret key(nsec) can be used to publish (sign events), everything else logs you in read-only mode.
+                </p>
+            </div>
+            <button type="submit">Login</button>
+            <button type="submit">Create Keys</button>
+            <button>Loging with Extension - (Nip-07)</button>
+        </form>
+        {% if nsec %}
+            <p>{{ greetings }}</p>
+            <p>This is my public key: {{ npub }}</p>
+            <p>This is my private key: {{ parseLineBreak(nsec) }}</p>
+            <a href="feed">Go to feed</a>
+        {% endif %}
+
+    </div>
 </div>
 {% endblock %}
