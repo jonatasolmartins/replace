@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Nostr client{% endblock %}</title>
     <meta name="description" content="This is a brief description of my nostr client that includes relevant keywords.">
-    {{ css("app.css") }}
+    {{ css("output.css") }}
    
 </head>
 
-<body>
-    {% include "partials/header.html" %}
-    {% block content %}{% endblock %}
-    {% include "partials/footer.html" %}
+<body class="h-screen">
+    <div class="flex flex-row  bg-gray-900 text-white text-lg">
+        {% include "partials/header.html" %}
+        {% block content %}{% endblock %}
+        <!-- {% include "partials/footer.html" %} -->
+    </div>
 </body>
 
 </html>

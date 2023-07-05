@@ -1,0 +1,13 @@
+{
+  "name": "replace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "tailwind-watch": "tailwindcss -i ./src/static/styles/input.css -o ./src/static/styles/output.css --watch",
+    "tailwind-build": "tailwindcss -i ./src/static/styles/input.css -o ./src/static/styles/output.css --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

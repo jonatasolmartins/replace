@@ -13,7 +13,6 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/helmet"
 	"github.com/gofiber/fiber/v2/middleware/idempotency"
 	"github.com/gofiber/fiber/v2/middleware/logger"
@@ -35,12 +34,12 @@ func main() {
 	app.Use(idempotency.New())
 	app.Use(recover.New())
 
-	app.Use(cors.New())
+	//app.Use(cors.New())
 	app.Use(logger.New(logger.Config{
 		Format: "[${ip}]:${port} ${status} - ${method} ${path}\n",
 	}))
 
-	app.Static("/static", "./static")
+	app.Static("src/static", "./src/static")
 	// app.Use(favicon.New(favicon.Config{
 	// 	File: "./favicon.ico",
 	// 	URL:  "/favicon.ico",
@@ -79,7 +78,7 @@ func initApp() (*fiber.App, error) {
 
 	app := fiber.New(fiber.Config{
 		ErrorHandler:          ErrorHandler,
-		DisableStartupMessage: true,
+		DisableStartupMessage: false,
 		PassLocalsToViews:     true,
 		Views:                 engine,
 	})
@@ -109,7 +108,7 @@ func ErrorHandler(ctx *fiber.Ctx, err error) error {
 }
 
 func initEngineTemplate() *django.Engine {
-	engine := django.New("./views", ".html")
+	engine := django.New("./src/views", ".html")
 	engine.Reload(true)
 
 	engine.AddFunc("formatTime", func(t time.Time) string {
@@ -133,7 +132,7 @@ func initEngineTemplate() *django.Engine {
 	})
 
 	engine.AddFunc("css", func(name string) (res template.HTML) {
-		filepath.Walk("static/styles", func(path string, info fs.FileInfo, err error) error {
+		filepath.Walk("src/static/styles", func(path string, info fs.FileInfo, err error) error {
 			if err != nil {
 				return err
 			}
